@@ -1,31 +1,51 @@
-// importerar Injectable så servicen kan användas i andra delar av angular
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 
-// importerar HttpClient så den kan skicka http-anrop till backend
 import { HttpClient } from '@angular/common/http';
 
-// importerar Observable som används när vi hämtar data asynkront
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
-// importerar vår Product-typ
 import { Product } from '../models/product';
 
-// gör servicen tillgänglig i hela appen
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
-// skapar product service
+
 export class ProductService {
-// adressen till backendens products-endpoint
-    private apiUrl = 'http://localhost:3000/api/products';
 
-// gör HttpClient tillgänglig i servicen
-    constructor(private http: HttpClient) {}
+  readonly products = signal<Product[]>([]);
 
-// hämtar alla produkter från backend.,
-    getProducts(): Observable<Product[]> {
+  private apiUrl = 'http://localhost:3000/api/products';
 
-        // skickar ett GET-anrop och förväntar oss en lista med produkter
-        return this.http.get<Product[]>(this.apiUrl);
-    }
+  constructor(private http: HttpClient) {}
+
+  getProducts(): Observable<Product[]> {
+
+    return this.http.get<Product[]>(this.apiUrl).pipe(
+      tap(products => this.products.set(products))
+    );
+  }
+  
+  addProduct(product: Omit<Product, 'id' | 'slug'>): Observable<Product> {
+
+    return this.http.post<Product>(this.apiUrl, product).pipe(
+      tap(createdProduct => {
+        this.products.update(products => [...products, createdProduct]);
+      })
+    );
+  }
+
+  deleteProduct(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`).pipe(
+      tap(() => {
+        this.products.update(products =>
+          products.filter(product => product.id !== id)
+        );
+      })
+    );
+  }
+
+  getProduct(slug: string): Observable<Product> {
+
+    return this.http.get<Product>(`${this.apiUrl}/${slug}`);
+  }
 }

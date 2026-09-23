@@ -1,0 +1,100 @@
+<header
+  class="flex items-center justify-between px-4 md:px-10 py-4 md:py-5 border-b bg-amber-950"
+>
+
+  
+  <a routerLink="/" class="cursor-pointer shrink-0">
+    <img
+      src="/images/Precious-logo.png"
+      alt="Precious"
+      class="h-12 md:h-16 w-auto rounded-2xl"
+    >
+  </a>
+
+  <nav class="flex flex-wrap items-center gap-x-5 gap-y-2 px-4 md:px-10 pb-4 text-sm md:text-base text-amber-50">
+
+  <a
+    routerLink="/nyheter"
+    class="cursor-pointer hover:underline"
+  >
+    Nyheter
+  </a>
+
+  <a
+    routerLink="/rea"
+    class="cursor-pointer hover:underline"
+  >
+    Rea
+  </a>
+
+  <a
+    routerLink="/kampanjer"
+    class="cursor-pointer hover:underline"
+  >
+    Kampanjer
+  </a>
+
+</nav>
+
+  
+  <div class="flex items-center gap-1 md:gap-4">
+
+   @if (searchOpen) {
+  <input
+     type="text"
+  placeholder="Sök..."
+  [(ngModel)]="searchText"
+  (keyup.enter)="search()"
+  class="w-24 sm:w-48 md:w-64 px-2 sm:px-3 py-2 rounded bg-white text-black"
+  >
+}
+    <button
+  class="p-2 cursor-pointer text-amber-50"
+  (click)="searchOpen && searchText ? search() : toggleSearch()"
+>
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <circle cx="11" cy="11" r="8"></circle>
+        <path d="m21 21-4.3-4.3"></path>
+      </svg>
+    </button>
+
+    
+    <button class="p-2 cursor-pointer text-amber-50">
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"></path>
+      </svg>
+    </button>
+
+    
+    <button class="p-2 cursor-pointer text-amber-50">
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <circle cx="9" cy="20" r="1"></circle>
+        <circle cx="19" cy="20" r="1"></circle>
+        <path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 2-1.6L22 8H6"></path>
+      </svg>
+    </button>
+
+  </div>
+
+</header>

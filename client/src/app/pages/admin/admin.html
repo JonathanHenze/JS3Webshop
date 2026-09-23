@@ -1,0 +1,125 @@
+<div class="min-h-screen bg-gray-50">
+
+  
+  <div class="bg-gray-900 text-white px-6 py-5">
+    <h1 class="text-xl font-semibold">
+      Administration
+    </h1>
+  </div>
+
+
+  <div class="flex flex-col md:flex-row">
+
+    
+    <aside class="w-full md:w-64 bg-white border-r p-6">
+
+      <p class="text-sm text-gray-500 mb-3">
+        Administration
+      </p>
+
+      <a
+        routerLink="/admin/products"
+        class="block font-medium"
+      >
+        Produkter
+      </a>
+
+    </aside>
+
+
+    
+    <main class="flex-1 p-4 md:p-8">
+
+      <div class="flex items-center justify-between mb-8">
+
+        <h2 class="text-2xl font-semibold">
+          Produkter
+        </h2>
+
+        <a
+          routerLink="/admin/products/new"
+          class="bg-gray-900 text-white px-5 py-3 rounded cursor-pointer"
+        >
+          Ny produkt
+        </a>
+
+      </div>
+
+
+      
+      <div class="bg-white border rounded-lg overflow-x-auto">
+
+        <table class="w-full min-w-150">
+
+          <thead class="border-b bg-gray-50">
+
+            <tr>
+
+              <th class="text-left p-4">
+                Namn
+              </th>
+
+              <th class="text-left p-4">
+                SKU
+              </th>
+
+              <th class="text-left p-4">
+                Pris
+              </th>
+
+              <th class="text-left p-4">
+                Hantera
+              </th>
+
+            </tr>
+
+          </thead>
+
+
+          <tbody>
+
+            <tr
+              *ngFor="let product of products()"
+              class="border-b"
+            >
+
+              <td class="p-4">
+                {{ product.name }}
+              </td>
+
+              <td class="p-4">
+                {{ product.sku }}
+              </td>
+
+              <td class="p-4">
+                {{ product.price }} kr
+              </td>
+
+              <td class="p-4">
+
+                <button
+                  (click)="deleteProduct(product.id)"
+                  class="text-red-600 cursor-pointer"
+                >
+                  Radera
+                </button>
+
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </main>
+
+  </div>
+
+</div>
+
+
+  
+  

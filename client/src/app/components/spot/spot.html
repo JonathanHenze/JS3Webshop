@@ -1,0 +1,20 @@
+<a
+  [routerLink]="link"
+  class="relative block overflow-hidden cursor-pointer group"
+>
+
+  <img
+    [src]="image"
+    [alt]="title"
+    class="w-full h-56 md:h-72 object-cover group-hover:scale-105 transition duration-300"
+  >
+
+  <div class="absolute inset-0 flex items-center justify-center bg-black/20">
+
+    <h3 class="text-white text-2xl font-semibold">
+      {{ title }}
+    </h3>
+
+  </div>
+
+</a>

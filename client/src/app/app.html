@@ -1,9 +1,7 @@
-<h1>Webshop</h1>
+<app-header></app-header>
 
-<div *ngFor="let product of products">
-  <h2>{{ product.title }}</h2>
-  <p>{{ product.description }}</p>
-  <p>{{ product.price }} kr</p>
-  <p>{{ product.category }}</p>
-  <img [src]="product.image" [alt]="product.title" width="150">
-</div>
+<main>
+	<router-outlet></router-outlet>
+</main>
+
+<app-footer></app-footer>

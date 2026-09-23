@@ -1,0 +1,38 @@
+<div class="group">
+
+  <div class="relative bg-stone-100 overflow-hidden">
+
+    <a [routerLink]="['/products', product.slug]">
+      <img
+        [src]="product.image"
+        [alt]="product.name"
+        class="w-full h-80 object-cover"
+      >
+    </a>
+
+    <button
+      class="absolute top-4 right-4 bg-white rounded-full p-2 cursor-pointer"
+    >
+      <svg
+        width="22"
+        height="22"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"
+        ></path>
+      </svg>
+    </button>
+
+  </div>
+
+  <a
+    [routerLink]="['/products', product.slug]"
+    class="block mt-3 cursor-pointer"
+  >
+    <h3 class="text-lg font-medium">
+      {{ product.name }}
+    </h3>

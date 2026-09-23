@@ -1,0 +1,92 @@
+<div class="min-h-screen bg-gray-50">
+
+  <div class="bg-gray-900 text-white px-6 py-5">
+    <h1 class="text-xl font-semibold">
+      Administration
+    </h1>
+  </div>
+
+
+  <div class="flex flex-col md:flex-row">
+
+    <aside class="w-full md:w-64 bg-white border-r p-6">
+
+      <p class="text-sm text-gray-500 mb-3">
+        Administration
+      </p>
+
+      <a
+        routerLink="/admin/products"
+        class="font-medium cursor-pointer"
+      >
+        Produkter
+      </a>
+
+    </aside>
+
+
+    <main class="flex-1 p-4 md:p-8">
+
+      <div class="max-w-2xl">
+        <div class="flex items-center justify-between mb-8">
+          <h2 class="text-2xl font-semibold">Ny produkt</h2>
+          <a routerLink="/admin/products" class="text-gray-600">Avbryt</a>
+        </div>
+
+        <form
+          (ngSubmit)="addProduct()"
+          class="bg-white border rounded-lg p-6 grid gap-5"
+        >
+          <label class="grid gap-2">
+            <span>Namn</span>
+            <input [(ngModel)]="newProduct.name" name="name" required class="border rounded px-3 py-2">
+          </label>
+
+          <label class="grid gap-2">
+            <span>Beskrivning</span>
+            <textarea [(ngModel)]="newProduct.description" name="description" required rows="4" class="border rounded px-3 py-2"></textarea>
+          </label>
+
+          <div class="grid gap-5 md:grid-cols-2">
+            <label class="grid gap-2">
+              <span>Pris</span>
+              <input [(ngModel)]="newProduct.price" name="price" required min="0" type="number" class="border rounded px-3 py-2">
+            </label>
+
+            <label class="grid gap-2">
+              <span>Kategori</span>
+              <select [(ngModel)]="newProduct.category" name="category" required class="border rounded px-3 py-2">
+                <option value="" disabled>Välj kategori</option>
+                <option value="T-shirts">T-shirts</option>
+                <option value="Hoodies">Hoodies</option>
+                <option value="Sweatshirts">Sweatshirts</option>
+                <option value="Byxor">Byxor</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="grid gap-5 md:grid-cols-2">
+            <label class="grid gap-2">
+              <span>Varumärke</span>
+              <input [(ngModel)]="newProduct.brand" name="brand" class="border rounded px-3 py-2">
+            </label>
+
+            <label class="grid gap-2">
+              <span>SKU</span>
+              <input [(ngModel)]="newProduct.sku" name="sku" class="border rounded px-3 py-2">
+            </label>
+          </div>
+
+          <label class="grid gap-2">
+            <span>Bild-URL</span>
+            <input [(ngModel)]="newProduct.image" name="image" required type="url" class="border rounded px-3 py-2">
+          </label>
+
+          <button type="submit" class="justify-self-start bg-gray-900 text-white px-5 py-3 rounded cursor-pointer">
+            Spara produkt
+          </button>
+        </form>
+      </div>
+    </main>
+  </div>
+</div>
